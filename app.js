@@ -5,16 +5,24 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 // var bodyParser = require('body-parser');
 // var favicon = require('serve-favicon');
+var catalogRouter = require('./routes/catalog'); //Import routes for "catalog" area of site
+var compression = require('compression');
+var helmet = require('helmet');
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var catalogRouter = require('./routes/catalog'); 
 
 var app = express();
+app.use(compression());
+app.use(helmet());
+
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 var mongoose = require('mongoose');
-var dev_db_url = 'mongodb://mariyawhitcomb:sakypmen7@ds153958.mlab.com:53958/local_library'
-var mongoDB = process.env.MONGODB_URI || dev_db_url;
+var mongoDB = process.env.MONGODB_URI || 'mongodb://your_user_id:your_password@ds119748.mlab.com:19748/local_library';
 mongoose.connect(mongoDB);
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
