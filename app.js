@@ -22,7 +22,7 @@ app.use(helmet());
 app.use(express.static(path.join(__dirname, 'public')));
 
 var mongoose = require('mongoose');
-var mongoDB = process.env.MONGODB_URI || 'mongodb://your_user_id:your_password@ds119748.mlab.com:19748/local_library';
+var mongoDB = process.env.MONGODB_URI || 'mongodb://mariyawhitcomb:sakypmen7@ds153958.mlab.com:53958/local_library';
 mongoose.connect(mongoDB);
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
